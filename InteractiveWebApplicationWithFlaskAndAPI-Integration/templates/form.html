@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Search Form</title>
+    <style>
+        /* Basic layout and styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            color: #333;
+            position: relative;
+        }
+
+        .nav-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #005f89;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .radio-group label {
+            display: inline; /* Align radio button labels inline */
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #0077b6;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005f89;
+        }
+
+        .hidden {
+            display: none; /* Used to hide/show fields dynamically */
+        }
+    </style>
+    <script>
+        function toggleFields() {
+            // Dynamically show/hide form fields based on input
+            let exchangeField = document.getElementById('exchange-field');
+            let financialDataField = document.getElementById('financial-data-field');
+            let queryValue = document.querySelector('input[name="query"]').value.trim();
+
+            if (queryValue) {
+                exchangeField.classList.remove('hidden');
+                financialDataField.classList.remove('hidden');
+            } else {
+                exchangeField.classList.add('hidden');
+                financialDataField.classList.add('hidden');
+            }
+        }
+    </script>
+</head>
+<body onload="toggleFields()">
+    <a href="{{ url_for('home') }}" class="nav-link">Go to Home Page</a>
+
+    <div class="container">
+        <h1>CapZ Holdings LLC</h1>
+        <form method="POST" oninput="toggleFields()">
+            {{ form.hidden_tag() }}
+
+            <!-- Stock symbol input -->
+            <p>
+                {{ form.query.label }}<br>
+                {{ form.query(size=20) }}
+            </p>
+
+            <!-- Exchange selection -->
+            <p id="exchange-field" class="hidden">
+                {{ form.exchange.label }}<br>
+                <div class="radio-group">
+                    {% for subfield in form.exchange %}
+                        <label>{{ subfield }} {{ subfield.label.text }}</label>
+                    {% endfor %}
+                </div>
+            </p>
+
+            <!-- Financial data selection -->
+            <p id="financial-data-field" class="hidden">
+                {{ form.financial_data_choice.label }}<br>
+                {{ form.financial_data_choice }}
+            </p>
+
+            <!-- Terms agreement -->
+            <p>
+                {{ form.agree_terms }} {{ form.agree_terms.label }}
+            </p>
+
+            <!-- Submit button -->
+            <p>
+                {{ form.submit() }}
+            </p>
+        </form>
+    </div>
+</body>
+</html>

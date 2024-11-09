@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Welcome to CapZ Holdings LLC</title>
+    <style>
+        /* Center content and set a clean layout */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container styling for a card-like appearance */
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #0077b6;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        a {
+            text-decoration: none;
+            background-color: #0077b6;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #005f8c; /* Darken button on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to CapZ Holdings LLC</h1>
+        <p>Use this application to search for and analyze stock data.</p>
+        <!-- Link to start the stock search -->
+        <a href="{{ url_for('form') }}">Start Searching</a>
+    </div>
+</body>
+</html>
