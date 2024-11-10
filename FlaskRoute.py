@@ -40,8 +40,9 @@ def form():
             }
 
             price_data = {
-                "labels": ['Price', 'Day High', 'Day Low', 'Year High'],
+                "labels": ['Name', 'Price', 'Day High', 'Day Low', 'Year High'],
                 "values": [
+                    profile_data.get('name', 0),
                     profile_data.get('price', 0),
                     profile_data.get('dayHigh', 0),
                     profile_data.get('dayLow', 0),
