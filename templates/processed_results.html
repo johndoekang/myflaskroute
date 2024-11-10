@@ -75,6 +75,7 @@
             <h2>Stock Data for {{ stock_symbol }} ({{ exchange }})</h2>
             <table>
                 <tr><th>Details</th><th>Result</th></tr>
+                <tr><td>Name</td><td>{{ combined_data.profile.name }}</td></tr>
                 <tr><td>Price</td><td>{{ combined_data.profile.price }}</td></tr>
                 <tr><td>Day High</td><td>{{ combined_data.profile.dayHigh }}</td></tr>
                 <tr><td>Day Low</td><td>{{ combined_data.profile.dayLow }}</td></tr>
